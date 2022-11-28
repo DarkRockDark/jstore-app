@@ -5,14 +5,14 @@ import classes from "./MainNavigation.module.css";
 function MainNavigation() {
   return (
     <header className={classes.header}>
-      <div>React meetups</div>
+      <div className={classes.logo}>React meetups</div>
       <nav>
         <ul>
           <li>
             <Link to="/">All Meetups</Link>
           </li>
           <li>
-            <Link to="/new-meetup">New Meetups</Link>
+            <Link to="/new-meetup">Add New Meetups</Link>
           </li>
           <li>
             <Link to="/favorites">My Favorites</Link>
