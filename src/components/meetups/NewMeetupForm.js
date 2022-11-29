@@ -26,10 +26,11 @@ function NewMeetupForm(props) {
         descrption: enteredDescription
     };
 
-    console.log(meetupData);
-    // this function is provided by the parent, 
-    // we're using it to send values as parameter
-    // props.onAddMeetup(meetupData);
+    // console.log(meetupData);
+    
+    // we're using this function, created in the parent,
+    // sending values as parameter back to the parent
+    props.onAddMeetup(meetupData);
   }
 
   return (
