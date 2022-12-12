@@ -13,6 +13,8 @@ const ExpenseForm = (props) => {
   //     enteredDate: "",
   //   });
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
     // wrong for edge cases when updating react managed objects
@@ -32,6 +34,7 @@ const ExpenseForm = (props) => {
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
+    console.log(event.target.value);
   };
 
   const submitHandler = (event) => {
@@ -43,11 +46,32 @@ const ExpenseForm = (props) => {
     };
 
     props.onSaveExpenseData(expenseData);
-    
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+
+    setIsFormOpen(!isFormOpen);
   };
+
+  const formToggleHandler = () => {
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+
+    // should use prevState? will check solution.
+    setIsFormOpen(!isFormOpen);
+  };
+
+  if (!isFormOpen) {
+    return (
+      <form>
+        <div className="new-expense__actions">
+          <button onClick={formToggleHandler}>Add New Expense</button>
+        </div>
+      </form>
+    );
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -82,6 +106,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={formToggleHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
